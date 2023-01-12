@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'pitches/pitches.css'%}">  
+    <link rel="stylesheet" href="{% static 'pitches/includes/header.css'%}">
+{% endblock %}
+
+{% block page_title %} All Pitches: {% endblock %}
+{% block content %}
+    {% include 'pitches/includes/header.html' %}
+    <h1>All Pitches: </h1>
+    <ul>
+        {% for pitch in pitches %}
+        <li>
+            <a href="{% url 'pitch_name' pitch %}">{{pitch | title}}</a>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

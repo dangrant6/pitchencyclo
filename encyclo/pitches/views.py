@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+from django.http import Http404, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
 from django.template.loader import render_to_string
 
@@ -15,14 +15,10 @@ pitch_selections = {
 }
 # Create your views here.
 def index(request):
-    items = ""
     pitchs = list(pitch_selections.keys())
-    for pitch in pitchs:
-        capital = pitch.capitalize()
-        pitch_path = reverse('pitch_name', args=[pitch])
-        items += f"<li><a href=\"{pitch_path}\">{capital}</a></li>"
-    repsonse_data = f"<ul>{items}</ul>"
-    return HttpResponse(repsonse_data)
+    return render(request, 'pitches/index.html',{
+        "pitches": pitchs,
+    })
 
 def pitch_by_num(request, pitch):
     pitchs = list(pitch_selections.keys())
@@ -37,9 +33,7 @@ def pitch_select(request,pitch):
         temp = pitch_selections[pitch]
         return render(request,'pitches/thepitch.html',{
             "text": temp,
-            #"pitch_type" : pitch.capitalize()
         })
-
     except:
-        return HttpResponseNotFound("Pitch not here")
+        raise Http404()
 
