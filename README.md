@@ -1,1 +1,1 @@
-django website that shows pitch grip/vids/tutorials
+django website that gives pitch grip/vids/tutorials
