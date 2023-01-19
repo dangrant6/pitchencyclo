@@ -13,4 +13,11 @@
 {% block content %}
     {% include 'pitches/includes/header.html' %}
     <h1>{{text | title}} Grips/Vids/Tuts</h1>
+    <h2>{{des | title}}</h2>
+    <h3>Here's an example of the {{text | title}}
+        <img src={{ex}}/>
+    </h3>
+    <h4>Download link for all grip/vid files of the {{text}}
+    </h4>
+    <h5><a href=""><center><button>Download File</button></center></a></h5>
 {% endblock %}
